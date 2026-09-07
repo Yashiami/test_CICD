@@ -2,11 +2,12 @@ pipeline {
     agent any
 	tools {
 		nodejs "node-7.8"
+		dockerTool "docker-latest"
 	}
 	stages {
 		stage("Build") {
 			steps {
-				sh 'npm install'
+				sh 'npm install --save-dev react-scripts@1.1.5'
 			}
 		}
 		stage("Test") {
