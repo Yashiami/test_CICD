@@ -11,6 +11,11 @@ pipeline {
 		}
 		stage("Test") {
 			steps {
+				sh '''
+					    pwd
+					    ls -la
+					    ls -la node_modules/.bin/react-scripts || echo "react-scripts missing!"
+					'''
 				sh 'npm test'
 			}
 		}
