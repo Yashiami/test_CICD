@@ -20,6 +20,7 @@ pipeline {
 		stage("Deploy") {
 			steps {
 				docker load -i nodemain.tar
+				docker ps -q | xargs -r docker rm -f
 				docker run -d --expose 3000 -p 3000:3000 nodemain:v1.0
 			}
 		}
