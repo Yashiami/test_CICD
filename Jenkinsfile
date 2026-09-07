@@ -2,20 +2,16 @@ pipeline {
     agent any
 	tools {
 		nodejs "node-7.8"
+		docker "docker-latest"
 	}
 	stages {
 		stage("Build") {
 			steps {
-				sh 'npm install --save react-scripts'
+				sh 'npm install --save-dev react-scripts@1.1.5'
 			}
 		}
 		stage("Test") {
 			steps {
-				sh '''
-					    pwd
-					    ls -la
-					    ls -la node_modules/.bin/react-scripts || echo "react-scripts missing!"
-					'''
 				sh 'npm test'
 			}
 		}
