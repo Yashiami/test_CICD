@@ -3,25 +3,25 @@ pipeline {
 	stages {
 		stage("Build") {
 			steps {
-				npm install
+				sh 'npm install'
 			}
 		}
 		stage("Test") {
 			steps {
-				npm test
+				sh 'npm test'
 			}
 		}
 		stage("Docker build") {
 			steps {
-				docker build -t nodemain:v1.0 .
-				docker save -o nodemain.tar nodemain:v1.0
+				sh '''docker build -t nodemain:v1.0 .
+				docker save -o nodemain.tar nodemain:v1.0'''
 			}
 		}
 		stage("Deploy") {
 			steps {
-				docker load -i nodemain.tar
+				sh '''docker load -i nodemain.tar
 				docker ps -q | xargs -r docker rm -f
-				docker run -d --expose 3000 -p 3000:3000 nodemain:v1.0
+				docker run -d --expose 3000 -p 3000:3000 nodemain:v1.0'''
 			}
 		}
 	}
