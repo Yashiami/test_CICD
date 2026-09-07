@@ -17,7 +17,9 @@ pipeline {
 		}
 		stage("Docker build") {
 			steps {
-				sh '''docker build -t nodedev:v1.0 .
+				sh '''
+				docker version
+				docker build -t nodedev:v1.0 .
 				docker save -o nodedev.tar nodedev:v1.0'''
 			}
 		}
