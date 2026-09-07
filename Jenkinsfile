@@ -1,7 +1,7 @@
 pipeline {
     agent any
 	tools {
-		nodejs "node-26"
+		nodejs "node-7.8"
 	}
 	stages {
 		stage("Build") {
